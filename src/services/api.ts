@@ -1,8 +1,6 @@
 import Client from "./Client";
 import { storageService } from "./storage";
 
-const useStagingUrl = storageService.getUseStagingUrl();
-
 const getApiBaseUrl = (): string => {
   const useStagingUrl = storageService.getUseStagingUrl();
   return useStagingUrl
@@ -10,17 +8,26 @@ const getApiBaseUrl = (): string => {
     : (process.env.EXPO_PUBLIC_CAKE_API_URL as string);
 };
 
+const getInitialHeaders = () => {
+  const useStagingUrl = storageService.getUseStagingUrl();
+  return useStagingUrl ? { "x-api-key": "staging-api-key" } : {};
+};
+
 const initialBaseUrl = getApiBaseUrl();
 
 export const cakeApi = new Client({
   baseURL: initialBaseUrl,
-  headers: {
-    ...(useStagingUrl ? { "x-api-key": "staging-api-key" } : {}),
-  },
+  headers: getInitialHeaders(),
 });
 
 export const updateApiBaseUrl = (): void => {
+  const useStagingUrl = storageService.getUseStagingUrl();
   cakeApi.baseURL = getApiBaseUrl();
+
+  if (useStagingUrl) {
+    cakeApi["axios"].defaults.headers.common["x-api-key"] = "staging-api-key";
+  }
+  delete cakeApi["axios"].defaults.headers.common["x-api-key"];
 };
 
 export const getCurrentApiBaseUrl = (): string => {
