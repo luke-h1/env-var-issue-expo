@@ -85,12 +85,20 @@ export default class Client {
     }
   ): Promise<TValue> {
     try {
+      const finalHeaders = {
+        ...this.axios.defaults.headers.common,
+        ...config.headers,
+      };
+
+      // Log the headers being sent
+      if (__DEV__) {
+        console.log(`[${config.method}] ${config.url}`);
+        console.log("sent headers:", JSON.stringify(finalHeaders, null, 2));
+      }
+
       const response = await this.axios({
         ...config,
-        headers: {
-          ...this.axios.defaults.headers.common,
-          ...config.headers,
-        },
+        headers: finalHeaders,
       });
 
       if ("rawResponse" in config && config.rawResponse) {
@@ -103,10 +111,6 @@ export default class Client {
         const errorMessage = `${config.url}_${
           config.method
         } request failed with ${JSON.stringify(error, null, 2)}`;
-
-        if (__DEV__) {
-          console.error(errorMessage);
-        }
 
         return error.response?.data;
       }
