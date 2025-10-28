@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "env-var-issue-expo",
-    "slug": "env-var-issue-expo",
+    "name": "env-var-issue-expo-tf",
+    "slug": "env-var-issue-expo-tf",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
@@ -10,10 +10,10 @@
     "newArchEnabled": true,
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.lukehowsam123.envvarissueexpo",
       "infoPlist": {
         "ITSAppUsesNonExemptEncryption": false
-      }
+      },
+      "bundleIdentifier": "com.sportinglife.envvarissueexpo"
     },
     "android": {
       "adaptiveIcon": {
@@ -24,7 +24,7 @@
       },
       "edgeToEdgeEnabled": true,
       "predictiveBackGestureEnabled": false,
-      "package": "com.lukehowsam123.envvarissueexpo"
+      "package": "com.sportinglife.envvarissueexpo"
     },
     "web": {
       "output": "static",
@@ -51,8 +51,10 @@
     },
     "extra": {
       "router": {},
-      "eas": {}
+      "eas": {
+        "projectId": "17a6cd7d-546a-4cc3-ad86-af7ec1968b04"
+      }
     },
-    "owner": "lukehowsam123"
+    "owner": "sporting-life"
   }
 }

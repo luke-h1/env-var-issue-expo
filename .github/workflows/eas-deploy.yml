@@ -1,7 +1,9 @@
 name: EAS deploy
-
 on:
   workflow_dispatch:
+env:
+  EXPO_APPLE_TEAM_ID: ${{ secrets.EXPO_APPLE_TEAM_ID }}
+  EXPO_TOKEN: ${{ secrets.EXPO_TOKEN }}
 jobs:
   app_deploy:
     runs-on: ubuntu-latest
