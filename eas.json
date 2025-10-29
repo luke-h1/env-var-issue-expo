@@ -6,13 +6,25 @@
   "build": {
     "development": {
       "developmentClient": true,
-      "distribution": "internal"
+      "distribution": "internal",
+      "env": {
+        "EXPO_PUBLIC_CAKE_API_URL": "$CAKE_API_URL_PRODUCTION",
+        "EXPO_PUBLIC_CAKE_API_URL_STAGING": "$CAKE_API_URL_STAGING"
+      }
     },
     "preview": {
-      "distribution": "internal"
+      "distribution": "internal",
+      "env": {
+        "EXPO_PUBLIC_CAKE_API_URL": "$CAKE_API_URL_PRODUCTION",
+        "EXPO_PUBLIC_CAKE_API_URL_STAGING": "$CAKE_API_URL_STAGING"
+      }
     },
     "production": {
-      "autoIncrement": true
+      "autoIncrement": true,
+      "env": {
+        "EXPO_PUBLIC_CAKE_API_URL": "$CAKE_API_URL_PRODUCTION",
+        "EXPO_PUBLIC_CAKE_API_URL_STAGING": "$CAKE_API_URL_STAGING"
+      }
     }
   },
   "submit": {

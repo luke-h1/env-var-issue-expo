@@ -26,8 +26,9 @@ export const updateApiBaseUrl = (): void => {
 
   if (useStagingUrl) {
     cakeApi["axios"].defaults.headers.common["x-api-key"] = "staging-api-key";
+  } else {
+    delete cakeApi["axios"].defaults.headers.common["x-api-key"];
   }
-  delete cakeApi["axios"].defaults.headers.common["x-api-key"];
 };
 
 export const getCurrentApiBaseUrl = (): string => {
